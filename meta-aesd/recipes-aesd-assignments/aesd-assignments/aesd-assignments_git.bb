@@ -23,6 +23,10 @@ FILES:${PN} += "${bindir}/aesdsocket-start-stop ${bindir}/aesdsocket"
 # (and remove comment)
 TARGET_LDFLAGS += "-pthread -lrt"
 
+inherit update-rc.d 
+INITSCRIPT_PACKAGES = "${PN}"
+INITSCRIPT_NAME:${PN} = "aesdsocket-start-stop"
+
 do_configure () {
 	:
 }
@@ -42,6 +46,6 @@ do_install () {
 	install -d ${D}${bindir}
 	install -m 0755 ${S}/aesdsocket ${D}${bindir}/	
 
-    install -d ${D}${sysconfdir}/init.d
-    install -m 0755 ${S}/aesdsocket-start-stop ${D}${sysconfdir}/init.d/	
+	install -d ${D}${sysconfdir}/init.d
+	install -m 0755 ${S}/aesdsocket-start-stop ${D}${sysconfdir}/init.d/	
 }
