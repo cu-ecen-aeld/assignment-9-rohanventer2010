@@ -5,12 +5,15 @@ LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda
 # Set this  with the path to your assignments rep.  Use ssh protocol and see lecture notes
 # about how to setup ssh-agent for passwordless access
 FILESEXTRAPATHS:prepend := "${THISDIR}/:"
-SRC_URI = "git://git@github.com/cu-ecen-aeld/assignments-3-and-later-rohanventer2010.git;protocol=ssh;branch=master"
+#SRC_URI = "git://git@github.com/cu-ecen-aeld/assignments-3-and-later-rohanventer2010.git;protocol=ssh;branch=master"
+#SRC_URI += "file://aesdchar_init"
+SRC_URI = "git:///home/jo/Desktop/coursera/assignments-3-and-later-rohanventer2010;protocol=file;branch=master"
 SRC_URI += "file://aesdchar_init"
 
 PV = "1.0+git${SRCPV}"
 # set to reference a specific commit hash in your assignment repo
-SRCREV = "7c9eb401d15a3f565fc0aad0353cf809ea43fca7"
+#SRCREV = "7c9eb401d15a3f565fc0aad0353cf809ea43fca7"
+SRCREV = "master"
 
 # This sets your staging directory based on WORKDIR, where WORKDIR is defined at 
 # https://docs.yoctoproject.org/ref-manual/variables.html?highlight=workdir#term-WORKDIR
@@ -20,7 +23,7 @@ S = "${WORKDIR}/git/aesd-char-driver"
 
 # Ensure your recipe uses inherit module and ensure this is placed at the top of your recipe and before any FILES_${PN}.
 inherit module
-EXTRA_OEMAKE:append:task-install = " -C ${STAGING_KERNEL_DIR} M=${S}/aesdchar"
+EXTRA_OEMAKE:append:task-install = " -C ${STAGING_KERNEL_DIR} M=${S}"
 EXTRA_OEMAKE += "KERNELDIR=${STAGING_KERNEL_DIR}"
 
 # See https://git.yoctoproject.org/poky/plain/meta/conf/bitbake.conf?h=kirkstone
@@ -36,8 +39,9 @@ do_configure () {
 	:
 }
 
+
 do_compile () {
-	oe_runmake
+	oe_runmake modules
 }
 
 do_install () {

@@ -1,6 +1,6 @@
 inherit core-image
 CORE_IMAGE_EXTRA_INSTALL += "aesd-assignments"
-#CORE_IMAGE_EXTRA_INSTALL += "aesdchar"
+CORE_IMAGE_EXTRA_INSTALL += "aesdchar"
 CORE_IMAGE_EXTRA_INSTALL += "scull"
 CORE_IMAGE_EXTRA_INSTALL += "misc-modules"
 CORE_IMAGE_EXTRA_INSTALL += "openssh"
