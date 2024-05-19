@@ -5,15 +5,19 @@ LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda
 # Set this  with the path to your assignments rep.  Use ssh protocol and see lecture notes
 # about how to setup ssh-agent for passwordless access
 FILESEXTRAPATHS:prepend := "${THISDIR}/:"
-#SRC_URI = "git://git@github.com/cu-ecen-aeld/assignments-3-and-later-rohanventer2010.git;protocol=ssh;branch=master"
-#SRC_URI += "file://aesdchar_init"
-SRC_URI = "git:///home/jo/Desktop/coursera/assignments-3-and-later-rohanventer2010;protocol=file;branch=master"
+SRC_URI = "git://git@github.com/cu-ecen-aeld/assignments-3-and-later-rohanventer2010.git;protocol=ssh;branch=master"
+
+# uncommment when using local repo
+#SRC_URI = "git:///home/jo/Desktop/coursera/assignments-3-and-later-rohanventer2010;protocol=file;branch=master"
+
 SRC_URI += "file://aesdchar_init"
 
 PV = "1.0+git${SRCPV}"
 # set to reference a specific commit hash in your assignment repo
-#SRCREV = "7c9eb401d15a3f565fc0aad0353cf809ea43fca7"
-SRCREV = "master"
+SRCREV = "7442880e5e6141590713093b202e09639829e66b"
+
+# uncommment when using local repo
+#SRCREV = "master"
 
 # This sets your staging directory based on WORKDIR, where WORKDIR is defined at 
 # https://docs.yoctoproject.org/ref-manual/variables.html?highlight=workdir#term-WORKDIR
