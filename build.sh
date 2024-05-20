@@ -10,6 +10,7 @@ git submodule update
 source poky/oe-init-build-env
 
 CONFLINE="MACHINE = \"qemuarm64\""
+CONFLINE2="BB_NUMBER_THREADS = \"\${@oe.utils.cpu_count()-1}\""
 
 cat conf/local.conf | grep "${CONFLINE}" > /dev/null
 local_conf_info=$?
@@ -20,6 +21,17 @@ if [ $local_conf_info -ne 0 ];then
 	
 else
 	echo "${CONFLINE} already exists in the local.conf file"
+fi
+
+cat conf/local.conf | grep "${CONFLINE2}" > /dev/null
+local_conf_info=$?
+
+if [ $local_conf_info -ne 0 ];then
+	echo "Append ${CONFLINE2} in the local.conf file"
+	echo ${CONFLINE2} >> conf/local.conf
+	
+else
+	echo "${CONFLINE2} already exists in the local.conf file"
 fi
 
 
