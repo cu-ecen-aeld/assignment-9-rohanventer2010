@@ -1,10 +1,5 @@
 name: assignment-test
-on:
-    push:
-        tags-ignore:
-            - '*'
-        branches:
-            - '*'
+on: [push]
 jobs:
       full-test:  
         runs-on: self-hosted
